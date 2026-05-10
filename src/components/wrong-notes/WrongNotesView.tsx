@@ -119,7 +119,7 @@ export function WrongNotesView() {
           </div>
           <Link
             href="/"
-            className="rounded-2xl bg-lime-500 px-4 py-3 text-sm font-black text-white shadow-[0_5px_0_#46a302]"
+            className="app-primary-button px-4 py-3 text-sm font-black"
           >
             새 학습 만들기
           </Link>
@@ -156,7 +156,7 @@ export function WrongNotesView() {
               }}
               className={`rounded-full px-4 py-2 text-sm font-black ${
                 filter === item.value
-                  ? "bg-orange-400 text-white"
+                  ? "bg-orange-100 text-orange-800 shadow-sm"
                   : "bg-slate-100 text-slate-700"
               }`}
             >
@@ -254,7 +254,7 @@ export function WrongNotesView() {
                   <button
                     type="button"
                     onClick={() => markReviewed(note.id)}
-                    className="h-12 rounded-2xl bg-orange-400 font-black text-white shadow-[0_5px_0_#c76a00]"
+                    className="app-orange-button h-12 font-black"
                   >
                     오늘 복습 완료
                   </button>

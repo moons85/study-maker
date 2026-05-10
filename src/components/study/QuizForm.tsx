@@ -129,7 +129,7 @@ export function QuizForm({
         </div>
         <div className="h-4 overflow-hidden rounded-full bg-lime-100 shadow-inner">
           <div
-            className="h-full rounded-full bg-lime-500 transition-all"
+            className="h-full rounded-full bg-lime-300 transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -153,7 +153,7 @@ export function QuizForm({
           <button
             type="button"
             onClick={() => showHint(currentQuestion.id)}
-            className="rounded-[18px] bg-yellow-300 px-4 py-3 text-sm font-black text-slate-950 shadow-[0_4px_0_#d9a900] active:translate-y-1 active:shadow-[0_2px_0_#d9a900]"
+            className="app-yellow-button px-4 py-3 text-sm font-black"
           >
             힌트 보기
           </button>

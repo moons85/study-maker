@@ -21,7 +21,7 @@ export default function RootLayout({
         <header className="sticky top-0 z-40 border-b border-white/70 bg-white/82 px-5 py-3 backdrop-blur sm:px-8">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
             <Link href="/" className="flex items-center gap-2 text-sm font-black text-lime-700">
-              <span className="grid h-9 w-9 place-items-center rounded-2xl border-2 border-slate-900 bg-lime-500 shadow-[0_4px_0_#46a302]">
+              <span className="grid h-9 w-9 place-items-center rounded-2xl border-2 border-lime-200 bg-lime-200 shadow-[0_4px_0_#a9dc55]">
                 <span className="relative h-5 w-5">
                   <span className="absolute left-0 top-1 h-4 w-3 rounded-l border-2 border-white" />
                   <span className="absolute right-0 top-1 h-4 w-3 rounded-r border-2 border-white" />
@@ -32,13 +32,13 @@ export default function RootLayout({
             <nav className="flex items-center gap-2">
               <Link
                 href="/"
-                className="rounded-full bg-lime-500 px-4 py-2 text-sm font-black text-white shadow-[0_4px_0_#46a302]"
+                className="app-primary-button rounded-full px-4 py-2 text-sm font-black"
               >
                 홈으로
               </Link>
               <Link
                 href="/wrong-notes"
-                className="rounded-full bg-orange-100 px-4 py-2 text-sm font-black text-orange-800"
+                className="rounded-full border-2 border-orange-100 bg-orange-50 px-4 py-2 text-sm font-black text-orange-700 shadow-sm hover:border-orange-200"
               >
                 오답노트
               </Link>

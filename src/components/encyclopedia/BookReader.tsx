@@ -93,7 +93,7 @@ export function BookReader({
           </div>
           <Link
             href={`/quiz/${sessionId}`}
-            className="rounded-2xl bg-lime-500 px-4 py-3 text-sm font-black text-white shadow-[0_5px_0_#46a302]"
+            className="app-primary-button px-4 py-3 text-sm font-black"
           >
             문제 풀기
           </Link>
@@ -136,7 +136,7 @@ export function BookReader({
           {pageIndex >= pages.length - 1 ? (
             <Link
               href={`/quiz/${sessionId}`}
-              className="flex h-12 items-center justify-center rounded-2xl bg-lime-500 px-5 font-black text-white shadow-[0_5px_0_#46a302]"
+              className="app-primary-button flex h-12 items-center justify-center px-5 font-black"
             >
               문제로 이동
             </Link>
@@ -144,7 +144,7 @@ export function BookReader({
             <button
               type="button"
               onClick={() => movePage(1)}
-              className="h-12 rounded-2xl bg-yellow-300 px-5 font-black text-slate-950 shadow-[0_5px_0_#d9a900]"
+              className="app-yellow-button h-12 px-5 font-black"
             >
               다음 페이지
             </button>

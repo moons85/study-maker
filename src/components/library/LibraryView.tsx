@@ -107,13 +107,13 @@ export function LibraryView() {
           </div>
           <Link
             href="/"
-            className="rounded-2xl bg-lime-500 px-4 py-3 text-sm font-black text-white shadow-[0_5px_0_#46a302]"
+            className="app-primary-button px-4 py-3 text-sm font-black"
           >
             새 주제 만들기
           </Link>
           <Link
             href="/wrong-notes"
-            className="rounded-2xl bg-orange-100 px-4 py-3 text-sm font-black text-orange-800"
+            className="rounded-[18px] border-2 border-orange-100 bg-orange-50 px-4 py-3 text-sm font-black text-orange-700 shadow-sm hover:border-orange-200"
           >
             오답노트
           </Link>

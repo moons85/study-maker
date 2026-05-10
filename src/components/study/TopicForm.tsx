@@ -157,7 +157,7 @@ export function TopicForm() {
           <button
             type="button"
             onClick={() => validateTopic(topic)}
-            className="h-14 rounded-[20px] bg-sky-400 px-4 font-black text-white shadow-[0_5px_0_#0b88c3] active:translate-y-1 active:shadow-[0_2px_0_#0b88c3]"
+            className="app-sky-button h-14 rounded-[20px] px-4 font-black"
           >
             확인
           </button>
@@ -223,7 +223,7 @@ export function TopicForm() {
           <button
             type="button"
             onClick={createFolder}
-            className="h-12 rounded-[18px] bg-yellow-300 px-4 font-black text-slate-950 shadow-[0_5px_0_#d9a900] active:translate-y-1 active:shadow-[0_2px_0_#d9a900]"
+            className="app-yellow-button h-12 px-4 font-black"
           >
             추가
           </button>
