@@ -116,7 +116,7 @@ export function QuizForm({
       {isSubmitting ? <StudySubmissionLoading /> : null}
       <form
         onSubmit={handleFormSubmit}
-        className="mx-auto max-w-2xl rounded-[24px] border-2 border-lime-100 bg-white p-5 shadow-[0_8px_0_#d7e7c8] sm:p-7"
+        className="app-card mx-auto max-w-2xl p-5 sm:p-7"
       >
       <div className="mb-6">
         <div className="mb-3 flex items-center justify-between text-sm font-bold">
@@ -127,17 +127,22 @@ export function QuizForm({
             {typeLabels[currentQuestion.type]}
           </span>
         </div>
-        <div className="h-3 overflow-hidden rounded-full bg-lime-100">
+        <div className="h-4 overflow-hidden rounded-full bg-lime-100 shadow-inner">
           <div
-            className="h-full rounded-full bg-lime-500"
+            className="h-full rounded-full bg-lime-500 transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
-      <h1 className="mb-7 text-2xl font-black leading-snug text-slate-950">
-        {currentQuestion.question}
-      </h1>
+      <section className="mb-7 rounded-[28px] bg-gradient-to-br from-white to-lime-50 p-5 shadow-sm">
+        <p className="mb-3 text-xs font-black uppercase text-lime-700">
+          Question
+        </p>
+        <h1 className="text-2xl font-black leading-snug text-slate-950">
+          {currentQuestion.question}
+        </h1>
+      </section>
 
       <div className="mb-5">
         {hintUsage[currentQuestion.id] ? (
@@ -148,7 +153,7 @@ export function QuizForm({
           <button
             type="button"
             onClick={() => showHint(currentQuestion.id)}
-            className="rounded-2xl bg-yellow-300 px-4 py-3 text-sm font-black text-slate-950 shadow-[0_4px_0_#d9a900]"
+            className="rounded-[18px] bg-yellow-300 px-4 py-3 text-sm font-black text-slate-950 shadow-[0_4px_0_#d9a900] active:translate-y-1 active:shadow-[0_2px_0_#d9a900]"
           >
             힌트 보기
           </button>
@@ -162,10 +167,10 @@ export function QuizForm({
               key={option}
               type="button"
               onClick={() => updateAnswer(currentQuestion.id, option)}
-              className={`w-full rounded-md border p-4 text-left text-base font-bold ${
+            className={`w-full rounded-[22px] border-2 p-4 text-left text-base font-black transition ${
                 answers[currentQuestion.id] === option
-                  ? "border-lime-500 bg-lime-50 text-lime-800"
-                  : "border-slate-200 bg-white text-slate-800"
+                  ? "border-lime-500 bg-lime-50 text-lime-800 shadow-[0_5px_0_#d7e7c8]"
+                  : "border-slate-200 bg-white text-slate-800 shadow-sm"
               }`}
             >
               {option}
@@ -178,7 +183,7 @@ export function QuizForm({
           onChange={(event) =>
             updateAnswer(currentQuestion.id, event.target.value)
           }
-          className="min-h-44 w-full rounded-2xl border-2 border-slate-200 p-4 outline-none focus:border-lime-500"
+          className="min-h-44 w-full rounded-[22px] border-2 border-slate-200 p-4 font-bold outline-none placeholder:font-bold placeholder:text-slate-300 focus:border-lime-500"
           placeholder="답변을 입력하세요."
         />
       ) : (
@@ -187,7 +192,7 @@ export function QuizForm({
           onChange={(event) =>
             updateAnswer(currentQuestion.id, event.target.value)
           }
-          className="h-14 w-full rounded-2xl border-2 border-slate-200 px-4 outline-none focus:border-lime-500"
+          className="h-14 w-full rounded-[22px] border-2 border-slate-200 px-4 font-bold outline-none placeholder:font-bold placeholder:text-slate-300 focus:border-lime-500"
           placeholder="답을 입력하세요."
         />
       )}
@@ -203,7 +208,7 @@ export function QuizForm({
           type="button"
           onClick={() => setCurrentIndex((index) => Math.max(0, index - 1))}
           disabled={currentIndex === 0}
-          className="h-12 rounded-2xl border-2 border-slate-200 bg-white font-black text-slate-800 disabled:cursor-not-allowed disabled:text-slate-400"
+          className="h-12 rounded-[18px] border-2 border-slate-200 bg-white font-black text-slate-800 shadow-sm disabled:cursor-not-allowed disabled:text-slate-400"
         >
           이전
         </button>
@@ -212,7 +217,7 @@ export function QuizForm({
             type="button"
             onClick={handleGradeClick}
             disabled={isSubmitting}
-            className="h-12 rounded-2xl bg-lime-500 font-black text-white shadow-[0_5px_0_#46a302] disabled:bg-slate-400 disabled:shadow-none"
+            className="app-primary-button h-12 font-black disabled:bg-slate-400 disabled:shadow-none"
           >
             {isSubmitting ? "채점 중..." : "제출하기"}
           </button>
@@ -224,7 +229,7 @@ export function QuizForm({
                 Math.min(questions.length - 1, index + 1),
               )
             }
-            className="h-12 rounded-2xl bg-lime-500 font-black text-white shadow-[0_5px_0_#46a302]"
+            className="app-primary-button h-12 font-black"
           >
             다음
           </button>

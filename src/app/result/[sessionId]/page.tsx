@@ -61,39 +61,46 @@ export default async function ResultPage({
   ).length;
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 text-slate-950">
-      <section className="mx-auto max-w-3xl rounded-[28px] border-2 border-lime-100 bg-white p-5 shadow-[0_10px_0_#d7e7c8] sm:p-8">
-        <p className="mb-2 text-sm font-black text-lime-700">
-          {session?.topic ?? "학습 결과"}
-        </p>
-        <h1 className="text-3xl font-black">학습 결과</h1>
-        <div className="mt-6 text-6xl font-black text-lime-600">
-          {submission?.score ?? 0}점
+    <main className="min-h-screen px-5 py-8 text-slate-950 sm:px-8">
+      <section className="app-card mx-auto max-w-4xl p-5 sm:p-8">
+        <div className="grid gap-6 md:grid-cols-[1fr_220px] md:items-center">
+          <div>
+            <p className="mb-2 text-sm font-black text-lime-700">
+              {session?.topic ?? "학습 결과"}
+            </p>
+            <h1 className="text-3xl font-black sm:text-5xl">학습 결과</h1>
+            <p className="mt-4 font-bold text-slate-600">
+              정답 {correctCount}개 / 오답{" "}
+              {Math.max(0, results.length - correctCount)}개 · 힌트 사용{" "}
+              {hintCount}개
+            </p>
+          </div>
+          <div className="grid aspect-square place-items-center rounded-full border-[14px] border-lime-100 bg-white shadow-[0_8px_0_#d7e7c8]">
+            <div className="text-center">
+              <div className="text-6xl font-black text-lime-600">
+                {submission?.score ?? 0}
+              </div>
+              <p className="text-sm font-black text-slate-500">POINT</p>
+            </div>
+          </div>
         </div>
-        <p className="mt-4 font-bold">
-          정답 {correctCount}개 / 오답 {Math.max(0, results.length - correctCount)}
-          개
-        </p>
-        <p className="mt-2 text-sm font-bold text-slate-500">
-          힌트 사용 {hintCount}개
-        </p>
 
         {submission?.unlocked_next_stage && nextStage ? (
-          <div className="mt-6 rounded-2xl bg-lime-50 p-4">
+          <div className="mt-6 rounded-[24px] bg-lime-50 p-4">
             <h2 className="font-black text-lime-900">다음 단계가 열렸습니다</h2>
             <p className="mt-2 text-sm font-bold leading-6 text-slate-700">
               70점 이상을 달성해서 같은 주제의 다음 난이도를 학습할 수 있습니다.
             </p>
           </div>
         ) : nextStage ? (
-          <div className="mt-6 rounded-2xl bg-yellow-50 p-4">
+          <div className="mt-6 rounded-[24px] bg-yellow-50 p-4">
             <h2 className="font-black text-yellow-900">조금 더 연습이 필요합니다</h2>
             <p className="mt-2 text-sm font-bold leading-6 text-slate-700">
               70점 이상을 받으면 다음 단계가 열립니다.
             </p>
           </div>
         ) : (
-          <div className="mt-6 rounded-2xl bg-sky-50 p-4">
+          <div className="mt-6 rounded-[24px] bg-sky-50 p-4">
             <h2 className="font-black text-sky-900">고급 단계까지 완료했습니다</h2>
             <p className="mt-2 text-sm font-bold leading-6 text-slate-700">
               같은 주제를 다시 풀거나 새로운 주제로 학습을 이어갈 수 있습니다.
@@ -101,7 +108,7 @@ export default async function ResultPage({
           </div>
         )}
 
-        <div className="mt-6 rounded-2xl bg-sky-50 p-4">
+        <div className="mt-6 rounded-[24px] bg-sky-50 p-4">
           <h2 className="font-black text-sky-800">AI 피드백</h2>
           <p className="mt-2 leading-7 text-slate-800">
             {feedback.summary ?? "제출 결과가 아직 없습니다."}
@@ -112,7 +119,7 @@ export default async function ResultPage({
           {results.map((result, index) => (
             <article
               key={result.questionId}
-              className={`rounded-2xl border-2 p-4 ${
+              className={`rounded-[24px] border-2 p-4 shadow-sm ${
                 result.isCorrect
                   ? "border-green-100 bg-green-50"
                   : "border-red-100 bg-red-50"
@@ -135,7 +142,7 @@ export default async function ResultPage({
                 {result.feedback ?? result.explanation}
               </p>
               {!result.isCorrect ? (
-                <div className="mt-4 space-y-2 rounded-2xl bg-white p-4 text-sm leading-6">
+                <div className="mt-4 space-y-2 rounded-[20px] bg-white p-4 text-sm leading-6">
                   <p>
                     <span className="font-black text-slate-900">내 답변: </span>
                     <span className="text-slate-700">
@@ -171,19 +178,19 @@ export default async function ResultPage({
         <div className="mt-8 grid gap-3 sm:grid-cols-4">
           <Link
             href={`/quiz/${sessionId}`}
-            className="flex h-12 items-center justify-center rounded-2xl border-2 border-slate-200 bg-white font-black text-slate-800"
+            className="flex h-12 items-center justify-center rounded-[18px] border-2 border-slate-200 bg-white font-black text-slate-800 shadow-sm"
           >
             다시 풀기
           </Link>
           <Link
             href="/"
-            className="flex h-12 items-center justify-center rounded-2xl border-2 border-slate-200 bg-white font-black text-slate-800"
+            className="flex h-12 items-center justify-center rounded-[18px] border-2 border-slate-200 bg-white font-black text-slate-800 shadow-sm"
           >
             홈으로 돌아가기
           </Link>
           <Link
             href="/wrong-notes"
-            className="flex h-12 items-center justify-center rounded-2xl border-2 border-orange-100 bg-orange-50 font-black text-orange-800"
+            className="flex h-12 items-center justify-center rounded-[18px] border-2 border-orange-100 bg-orange-50 font-black text-orange-800 shadow-sm"
           >
             오답노트
           </Link>
@@ -197,7 +204,7 @@ export default async function ResultPage({
           ) : (
             <Link
               href="/"
-              className="flex h-12 items-center justify-center rounded-2xl bg-lime-500 font-black text-white shadow-[0_5px_0_#46a302]"
+              className="app-primary-button flex h-12 items-center justify-center font-black"
             >
               다른 주제 학습하기
             </Link>

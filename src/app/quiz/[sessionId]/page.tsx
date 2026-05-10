@@ -23,7 +23,7 @@ export default async function QuizPage({
     .order("order_no", { ascending: true });
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 text-slate-950">
+    <main className="min-h-screen px-5 py-8 text-slate-950">
       <QuizForm
         sessionId={sessionId}
         stage={stage}

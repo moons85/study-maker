@@ -29,25 +29,53 @@ export default async function StudyPage({
   const { session, count, content, sources } = studyData;
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 text-slate-950">
-      <section className="mx-auto max-w-4xl rounded-[28px] border-2 border-lime-100 bg-white p-5 shadow-[0_10px_0_#d7e7c8] sm:p-8">
-        <p className="mb-2 text-sm font-black text-lime-700">
-          {stageLabels[session.current_stage as Level]} · 문제 {count ?? 0}개
-        </p>
-        <h1 className="text-3xl font-black">{content.topic}</h1>
-        <p className="mt-4 rounded-2xl bg-lime-50 p-4 leading-7 text-slate-800">
-          {content.summary}
-        </p>
-        <p className="mt-3 rounded-2xl bg-sky-50 p-4 leading-7 text-slate-800">
-          쉽게 말하면: {content.analogy}
-        </p>
+    <main className="min-h-screen px-5 py-6 text-slate-950 sm:px-8">
+      <section className="mx-auto max-w-5xl">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <Link
+            href="/"
+            className="rounded-full bg-white px-4 py-2 text-sm font-black text-slate-700 shadow-sm"
+          >
+            홈으로
+          </Link>
+          <span className="rounded-full bg-purple-100 px-4 py-2 text-sm font-black text-purple-700">
+            {stageLabels[session.current_stage as Level]} · 문제 {count ?? 0}개
+          </span>
+        </div>
+
+        <div className="app-card overflow-hidden p-5 sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_250px] lg:items-center">
+            <div>
+              <p className="mb-2 text-sm font-black text-lime-700">오늘의 개념</p>
+              <h1 className="text-3xl font-black leading-tight sm:text-5xl">
+                {content.topic}
+              </h1>
+              <p className="mt-4 rounded-[24px] bg-lime-50 p-4 text-base font-bold leading-7 text-slate-800">
+                {content.summary}
+              </p>
+              <p className="mt-3 rounded-[24px] bg-sky-50 p-4 text-base font-bold leading-7 text-slate-800">
+                쉽게 말하면: {content.analogy}
+              </p>
+            </div>
+            <div className="rounded-[30px] bg-gradient-to-b from-white to-yellow-50 p-4">
+              <div className="study-mascot scale-90" aria-hidden="true">
+                <div className="study-mascot-spark study-mascot-spark-a">개</div>
+                <div className="study-mascot-spark study-mascot-spark-b">념</div>
+                <div className="study-mascot-spark study-mascot-spark-c">✓</div>
+                <div className="study-mascot-body">
+                  <div className="study-mascot-face" />
+                </div>
+                <div className="study-mascot-book" />
+              </div>
+            </div>
+          </div>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           <section>
             <h2 className="mb-3 text-lg font-black">학습 목차</h2>
             <ul className="space-y-2">
               {content.outline.map((item) => (
-                <li key={item} className="rounded-2xl bg-slate-50 p-3">
+                <li key={item} className="rounded-[20px] bg-white p-3 font-bold shadow-sm">
                   {item}
                 </li>
               ))}
@@ -58,7 +86,7 @@ export default async function StudyPage({
             <h2 className="mb-3 text-lg font-black">핵심 포인트</h2>
             <ul className="space-y-2">
               {content.keyPoints.map((item) => (
-                <li key={item} className="rounded-2xl bg-slate-50 p-3">
+                <li key={item} className="rounded-[20px] bg-white p-3 font-bold shadow-sm">
                   {item}
                 </li>
               ))}
@@ -72,7 +100,7 @@ export default async function StudyPage({
             {content.concepts.map((concept) => (
               <article
                 key={concept.title}
-                className="rounded-2xl border-2 border-slate-100 p-4"
+                className="rounded-[24px] border-2 border-slate-100 bg-white/80 p-4 shadow-sm"
               >
                 <h3 className="font-black">{concept.title}</h3>
                 <p className="mt-2 leading-7 text-slate-700">
@@ -96,7 +124,7 @@ export default async function StudyPage({
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-yellow-50 p-4">
+        <section className="mt-8 rounded-[24px] bg-yellow-50 p-4">
           <h2 className="mb-3 text-lg font-black">문제 풀기 전 체크</h2>
           <ul className="space-y-2 text-sm font-bold leading-6 text-slate-800">
             {content.reviewChecklist.map((item) => (
@@ -110,16 +138,17 @@ export default async function StudyPage({
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
           <Link
             href={`/encyclopedia/${sessionId}`}
-            className="flex h-14 items-center justify-center rounded-2xl border-2 border-yellow-200 bg-yellow-50 px-5 font-black text-yellow-900"
+            className="flex h-14 items-center justify-center rounded-[20px] border-2 border-yellow-200 bg-yellow-50 px-5 font-black text-yellow-900"
           >
             책처럼 보기
           </Link>
           <Link
             href={`/quiz/${sessionId}`}
-            className="flex h-14 items-center justify-center rounded-2xl bg-lime-500 px-5 font-black text-white shadow-[0_5px_0_#46a302]"
+            className="app-primary-button flex h-14 items-center justify-center px-5 font-black"
           >
             문제 풀기 시작
           </Link>
+        </div>
         </div>
       </section>
     </main>

@@ -149,7 +149,7 @@ export function TopicForm() {
               if (topic.trim().length >= 2) void validateTopic(topic);
             }}
             placeholder="예: 조선 후기, 미분 기초, 영어 관계대명사"
-            className="h-14 min-w-0 flex-1 rounded-2xl border-2 border-lime-200 bg-white px-4 text-base outline-none transition focus:border-lime-500"
+            className="h-14 min-w-0 flex-1 rounded-[20px] border-2 border-lime-200 bg-white px-4 text-base font-bold outline-none transition placeholder:font-bold placeholder:text-slate-300 focus:border-lime-500"
             required
             minLength={2}
             maxLength={80}
@@ -157,7 +157,7 @@ export function TopicForm() {
           <button
             type="button"
             onClick={() => validateTopic(topic)}
-            className="h-14 rounded-2xl bg-sky-400 px-4 font-black text-white shadow-[0_5px_0_#0b88c3]"
+            className="h-14 rounded-[20px] bg-sky-400 px-4 font-black text-white shadow-[0_5px_0_#0b88c3] active:translate-y-1 active:shadow-[0_2px_0_#0b88c3]"
           >
             확인
           </button>
@@ -205,7 +205,7 @@ export function TopicForm() {
         <select
           value={folderId ?? ""}
           onChange={(event) => setFolderId(event.target.value || null)}
-          className="h-14 w-full rounded-2xl border-2 border-lime-200 bg-white px-4 font-bold outline-none focus:border-lime-500"
+          className="h-14 w-full rounded-[20px] border-2 border-lime-200 bg-white px-4 font-bold outline-none focus:border-lime-500"
         >
           {folders.map((folder) => (
             <option key={folder.id} value={folder.id}>
@@ -218,19 +218,19 @@ export function TopicForm() {
             value={newFolderName}
             onChange={(event) => setNewFolderName(event.target.value)}
             placeholder="새 폴더 이름"
-            className="h-12 min-w-0 flex-1 rounded-2xl border-2 border-slate-200 px-4 outline-none focus:border-sky-400"
+            className="h-12 min-w-0 flex-1 rounded-[18px] border-2 border-slate-200 px-4 font-bold outline-none placeholder:font-bold placeholder:text-slate-300 focus:border-sky-400"
           />
           <button
             type="button"
             onClick={createFolder}
-            className="h-12 rounded-2xl bg-yellow-300 px-4 font-black text-slate-950 shadow-[0_5px_0_#d9a900]"
+            className="h-12 rounded-[18px] bg-yellow-300 px-4 font-black text-slate-950 shadow-[0_5px_0_#d9a900] active:translate-y-1 active:shadow-[0_2px_0_#d9a900]"
           >
             추가
           </button>
         </div>
       </div>
 
-      <div className="rounded-2xl bg-lime-50 p-4 text-sm font-bold text-lime-900">
+      <div className="rounded-[22px] bg-lime-50 p-4 text-sm font-bold leading-6 text-lime-900">
         새 주제는 초급부터 시작합니다. 초급 70점 이상이면 중급, 중급
         70점 이상이면 고급이 열립니다.
       </div>
@@ -250,7 +250,7 @@ export function TopicForm() {
       <button
         type="submit"
         disabled={isGenerating}
-        className="h-14 w-full rounded-2xl bg-lime-500 px-5 text-base font-black text-white shadow-[0_6px_0_#46a302] transition active:translate-y-1 active:shadow-[0_3px_0_#46a302] disabled:cursor-not-allowed disabled:bg-slate-400 disabled:shadow-none"
+        className="app-primary-button h-14 w-full px-5 text-base font-black disabled:cursor-not-allowed disabled:bg-slate-400 disabled:shadow-none"
       >
         {isGenerating ? "생성 중..." : "초급 랜덤 10문제 만들기"}
       </button>

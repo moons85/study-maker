@@ -73,7 +73,7 @@ export function NextStageButton({
         type="button"
         onClick={startNextStage}
         disabled={isLoading}
-        className="flex h-12 w-full items-center justify-center rounded-2xl bg-lime-500 font-black text-white shadow-[0_5px_0_#46a302] disabled:bg-slate-400 disabled:shadow-none"
+        className="app-primary-button flex h-12 w-full items-center justify-center font-black disabled:bg-slate-400 disabled:shadow-none"
       >
         {isLoading ? "생성 중..." : `${stageLabels[stage]} 단계 시작`}
       </button>

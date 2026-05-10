@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8fb;
+  --background: #f5faea;
   --foreground: #172033;
+  --app-green: #58cc02;
+  --app-green-dark: #46a302;
+  --app-purple: #6c3ff2;
+  --app-sky: #1cb0f6;
+  --app-yellow: #ffd43b;
+  --app-orange: #ff9f43;
+  --app-pink: #ff6baa;
+  --app-cream: #fffaf0;
+  --app-line: #e6efd5;
+  --app-shadow: rgba(23, 32, 51, 0.12);
 }
 
 @theme inline {
@@ -18,10 +28,186 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(255, 212, 59, 0.24), transparent 18rem),
+    radial-gradient(circle at 88% 8%, rgba(108, 63, 242, 0.12), transparent 20rem),
+    radial-gradient(circle at 78% 82%, rgba(28, 176, 246, 0.12), transparent 18rem),
+    linear-gradient(135deg, #f5faea 0%, #f7f4ff 52%, #fffaf0 100%);
+}
+
 button,
 input,
 textarea {
   font: inherit;
+}
+
+.app-card {
+  border: 2px solid var(--app-line);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 0 #d7e7c8, 0 24px 56px rgba(23, 32, 51, 0.08);
+}
+
+.app-card-soft {
+  border: 2px solid rgba(230, 239, 213, 0.8);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 28px rgba(23, 32, 51, 0.06);
+}
+
+.app-primary-button {
+  border-radius: 18px;
+  background: var(--app-green);
+  color: #ffffff;
+  box-shadow: 0 6px 0 var(--app-green-dark);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.app-primary-button:hover {
+  filter: brightness(1.03);
+}
+
+.app-primary-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 var(--app-green-dark);
+}
+
+.study-mascot {
+  position: relative;
+  width: min(280px, 70vw);
+  height: 260px;
+  margin-inline: auto;
+}
+
+.study-mascot-body {
+  position: absolute;
+  left: 50%;
+  top: 62px;
+  width: 118px;
+  height: 136px;
+  transform: translateX(-50%);
+  border: 3px solid #172033;
+  border-radius: 42px 42px 34px 34px;
+  background: linear-gradient(180deg, #ffffff 0%, #ecffe0 100%);
+  box-shadow: 0 9px 0 rgba(70, 163, 2, 0.26);
+}
+
+.study-mascot-face {
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  width: 84px;
+  height: 54px;
+  transform: translateX(-50%);
+  border: 3px solid #172033;
+  border-radius: 28px;
+  background: #172033;
+}
+
+.study-mascot-face::before,
+.study-mascot-face::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #58cc02;
+  box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.16);
+}
+
+.study-mascot-face::before {
+  left: 20px;
+}
+
+.study-mascot-face::after {
+  right: 20px;
+}
+
+.study-mascot-book {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  width: 148px;
+  height: 74px;
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.study-mascot-book::before,
+.study-mascot-book::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 72px;
+  height: 74px;
+  border: 3px solid #172033;
+  background: #ffd43b;
+  box-shadow: 0 7px 0 rgba(23, 32, 51, 0.12);
+}
+
+.study-mascot-book::before {
+  left: 0;
+  border-radius: 18px 8px 8px 18px;
+}
+
+.study-mascot-book::after {
+  right: 0;
+  border-radius: 8px 18px 18px 8px;
+  background: #ffef99;
+}
+
+.study-mascot-spark {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  border: 3px solid #172033;
+  background: #ffffff;
+  color: #6c3ff2;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 6px 0 rgba(23, 32, 51, 0.12);
+  animation: mascot-float 2.6s ease-in-out infinite;
+}
+
+.study-mascot-spark-a {
+  left: 24px;
+  top: 46px;
+}
+
+.study-mascot-spark-b {
+  right: 10px;
+  top: 92px;
+  color: #1cb0f6;
+  animation-delay: 0.35s;
+}
+
+.study-mascot-spark-c {
+  left: 42px;
+  bottom: 14px;
+  color: #ff9f43;
+  animation-delay: 0.7s;
+}
+
+@keyframes mascot-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
 }
 
 .study-loader-scene {
