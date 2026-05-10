@@ -61,7 +61,6 @@ export function LibraryView() {
         ? `&folderId=${encodeURIComponent(selectedFolderId)}`
         : "";
 
-    setIsLoading(true);
     fetch(`/api/study/sessions?anonymousId=${encodeURIComponent(anonymousId)}${shouldFilter}`)
       .then((response) => response.json())
       .then((data: { sessions?: StudySession[] }) => setSessions(data.sessions ?? []))
@@ -78,7 +77,10 @@ export function LibraryView() {
             <button
               key={folder.id}
               type="button"
-              onClick={() => setSelectedFolderId(folder.id)}
+              onClick={() => {
+                setIsLoading(true);
+                setSelectedFolderId(folder.id);
+              }}
               className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left font-black ${
                 selectedFolderId === folder.id
                   ? "bg-lime-100 text-lime-900"

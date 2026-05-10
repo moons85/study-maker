@@ -64,8 +64,6 @@ export function WrongNotesView() {
 
   useEffect(() => {
     const anonymousId = getAnonymousId();
-    setIsLoading(true);
-    setError("");
 
     fetch(
       `/api/wrong-notes?anonymousId=${encodeURIComponent(anonymousId)}&status=${
@@ -151,7 +149,11 @@ export function WrongNotesView() {
             <button
               key={item.value}
               type="button"
-              onClick={() => setFilter(item.value as "due" | "open" | "all")}
+              onClick={() => {
+                setIsLoading(true);
+                setError("");
+                setFilter(item.value as "due" | "open" | "all");
+              }}
               className={`rounded-full px-4 py-2 text-sm font-black ${
                 filter === item.value
                   ? "bg-orange-400 text-white"
