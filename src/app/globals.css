@@ -149,6 +149,31 @@ button:not(:disabled) {
   box-shadow: 0 2px 0 var(--app-orange-dark);
 }
 
+[data-tour-active="true"] {
+  position: relative;
+  z-index: 40;
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.94),
+    0 0 0 10px rgba(201, 245, 122, 0.74),
+    0 20px 48px rgba(23, 32, 51, 0.18) !important;
+}
+
+.onboarding-spotlight {
+  position: fixed;
+  z-index: 52;
+  pointer-events: none;
+  border: 2px solid rgba(201, 245, 122, 0.95);
+  border-radius: 28px;
+  box-shadow:
+    0 0 0 9999px rgba(15, 23, 42, 0.18),
+    0 0 36px rgba(201, 245, 122, 0.7);
+  transition:
+    left 180ms ease,
+    top 180ms ease,
+    width 180ms ease,
+    height 180ms ease;
+}
+
 .study-mascot {
   position: relative;
   width: min(280px, 70vw);

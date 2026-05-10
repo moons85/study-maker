@@ -30,6 +30,7 @@ export function HomeReviewCard() {
   return (
     <Link
       href="/wrong-notes"
+      data-tour="wrong-notes"
       className="rounded-[24px] border-2 border-orange-100 bg-white p-5 shadow-[0_6px_0_#fed7aa]"
     >
       <p className="text-sm font-black text-orange-700">오늘의 복습</p>

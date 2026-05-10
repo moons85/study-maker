@@ -1,11 +1,13 @@
 import Link from "next/link";
 
 import { HomeReviewCard } from "@/components/home/HomeReviewCard";
+import { OnboardingGuide } from "@/components/onboarding/OnboardingGuide";
 import { TopicForm } from "@/components/study/TopicForm";
 
 export default function Home() {
   return (
     <main className="min-h-screen px-5 py-6 text-slate-950 sm:px-8">
+      <OnboardingGuide />
       <section className="mx-auto max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:items-start">
           <div className="pt-2 sm:pt-8">
@@ -21,7 +23,7 @@ export default function Home() {
               이어갈 수 있습니다.
             </p>
 
-            <div className="mt-10 app-card p-5">
+            <div className="mt-10 app-card p-5" data-tour="learning-path">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-black text-lime-700">학습 경로</p>
                 <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">

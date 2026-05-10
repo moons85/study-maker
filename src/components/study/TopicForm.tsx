@@ -134,7 +134,7 @@ export function TopicForm() {
     <>
       {isGenerating ? <StudyGenerationLoading topic={topic} /> : null}
       <form className="space-y-6" onSubmit={handleSubmit}>
-        <div>
+        <div data-tour="topic-input">
         <label className="mb-3 block text-base font-black text-slate-950">
           오늘은 무엇을 배워볼까요?
         </label>
@@ -250,6 +250,7 @@ export function TopicForm() {
       <button
         type="submit"
         disabled={isGenerating}
+        data-tour="create-study"
         className="app-primary-button h-14 w-full px-5 text-base font-black disabled:cursor-not-allowed disabled:bg-slate-400 disabled:shadow-none"
       >
         {isGenerating ? "생성 중..." : "초급 랜덤 10문제 만들기"}
