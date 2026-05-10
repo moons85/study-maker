@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 import {
+  assertAndRecordAiUsage,
+  isUsageLimitError,
+} from "@/lib/ai-usage-limit";
+import {
   createGenerationCacheKey,
   createGenerationLockKey,
 } from "@/lib/cache-key";
@@ -411,6 +415,16 @@ export async function POST(request: Request) {
         questions: cached.questions,
       });
     } else {
+      await assertAndRecordAiUsage({
+        request,
+        anonymousId: body.anonymousId,
+        action: "study_generate",
+        metadata: {
+          topic: body.normalizedTopic,
+          stage: body.stage,
+        },
+      });
+
       const openai = getOpenAI();
       const completion = await openai.chat.completions.create({
         model: process.env.OPENAI_MODEL ?? "gpt-4.1-mini",
@@ -485,7 +499,7 @@ export async function POST(request: Request) {
             ? error.message
             : "학습 콘텐츠 생성 중 오류가 발생했습니다.",
       },
-      { status: 400 },
+      { status: isUsageLimitError(error) ? error.status : 400 },
     );
   }
 }

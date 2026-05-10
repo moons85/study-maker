@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 
+import {
+  assertAndRecordAiUsage,
+  isUsageLimitError,
+} from "@/lib/ai-usage-limit";
 import { getOpenAI } from "@/lib/openai";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { gradeStudyRequestSchema } from "@/lib/validation";
@@ -99,6 +103,17 @@ export async function POST(request: Request) {
     let aiScores = new Map<string, { score: number; feedback: string }>();
 
     if (subjectiveQuestions.length > 0) {
+      await assertAndRecordAiUsage({
+        request,
+        anonymousId: body.anonymousId,
+        action: "study_grade",
+        metadata: {
+          sessionId: body.sessionId,
+          stage: body.stage,
+          subjectiveCount: subjectiveQuestions.length,
+        },
+      });
+
       const openai = getOpenAI();
       const completion = await openai.chat.completions.create({
         model: process.env.OPENAI_MODEL ?? "gpt-4.1-mini",
@@ -305,7 +320,7 @@ export async function POST(request: Request) {
             ? error.message
             : "채점 중 오류가 발생했습니다.",
       },
-      { status: 400 },
+      { status: isUsageLimitError(error) ? error.status : 400 },
     );
   }
 }

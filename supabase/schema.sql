@@ -118,6 +118,15 @@ create table if not exists public.study_sources (
   unique (session_id, url)
 );
 
+create table if not exists public.ai_usage_events (
+  id uuid primary key default gen_random_uuid(),
+  anonymous_id text not null,
+  ip_hash text not null,
+  action text not null check (action in ('study_generate', 'study_grade')),
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
 create index if not exists study_sessions_anonymous_id_created_at_idx
   on public.study_sessions (anonymous_id, created_at desc);
 
@@ -149,6 +158,12 @@ create index if not exists wrong_notes_due_today_idx
   on public.wrong_notes (anonymous_id, status, next_review_at)
   where status = 'open';
 
+create index if not exists ai_usage_events_anon_action_created_idx
+  on public.ai_usage_events (anonymous_id, action, created_at desc);
+
+create index if not exists ai_usage_events_ip_action_created_idx
+  on public.ai_usage_events (ip_hash, action, created_at desc);
+
 alter table public.study_sessions enable row level security;
 alter table public.questions enable row level security;
 alter table public.submissions enable row level security;
@@ -157,6 +172,7 @@ alter table public.ai_generation_cache enable row level security;
 alter table public.generation_locks enable row level security;
 alter table public.wrong_notes enable row level security;
 alter table public.study_sources enable row level security;
+alter table public.ai_usage_events enable row level security;
 
 -- MVP에서는 Next.js 서버 라우트가 service role/secret key로 DB 쓰기를 담당합니다.
 -- 클라이언트 직접 DB 접근은 열지 않습니다.
